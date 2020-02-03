@@ -1,7 +1,5 @@
 # Install dependencies script
 
-set -eu
-
 if [ $ARCH == "linux_x86_64" ]; then
   sudo apt-get install -y build-essential bison flex gperf autoconf
   sudo apt-get autoremove -y
