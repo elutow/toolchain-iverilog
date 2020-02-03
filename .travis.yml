@@ -34,3 +34,4 @@ deploy:
   on:
     all_branches: true
     repo: elutow/toolchain-iverilog
+    tags: true
