@@ -1,8 +1,8 @@
 # -- Compile Iverilog script
 
-VER=10_2
+VER=b1114760fcfba55ee9ca35ba95e2b3ed2b7c7a20
 IVERILOG=iverilog-$VER
-TAR_IVERILOG=v$VER.tar.gz
+TAR_IVERILOG=$VER.tar.gz
 REL_IVERILOG=https://github.com/steveicarus/iverilog/archive/$TAR_IVERILOG
 
 # -- Setup

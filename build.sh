@@ -6,7 +6,7 @@
 # Generate toolchain-iverilog-arch-ver.tar.gz from source code
 # sources: http://iverilog.icarus.com/
 
-VERSION=1.2.1
+VERSION=1.3.0
 
 # -- Target architectures
 ARCH=$1
