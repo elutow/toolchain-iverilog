@@ -3,34 +3,34 @@ dist: trusty
 language: cpp
 matrix:
   include:
-    - os: linux
-      env: TARGET=linux_x86_64
-    - os: linux
-      env: TARGET=linux_i686
-    - os: linux
-      env: TARGET=linux_armv7l
-    - os: linux
-      env: TARGET=linux_aarch64
-    - os: linux
-      env: TARGET=windows_x86
-    - os: linux
-      env: TARGET=windows_amd64
-    - os: osx
-      env: TARGET=darwin
+  - os: linux
+    env: TARGET=linux_x86_64
+  - os: linux
+    env: TARGET=linux_i686
+  - os: linux
+    env: TARGET=linux_armv7l
+  - os: linux
+    env: TARGET=linux_aarch64
+  - os: linux
+    env: TARGET=windows_x86
+  - os: linux
+    env: TARGET=windows_amd64
+  - os: osx
+    env: TARGET=darwin
 before_script:
-  - if [[ ${TARGET:0:7} == "windows" ]]; then sudo dpkg --add-architecture i386; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -y -qq; fi
+- if [[ ${TARGET:0:7} == "windows" ]]; then sudo dpkg --add-architecture i386; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -y -qq; fi
 script:
-  - bash build.sh $TARGET
-  - openssl sha1 _packages/**/*.tar.gz
+- bash build.sh $TARGET
+- openssl sha1 _packages/**/*.tar.gz
 deploy:
   provider: releases
   api_key:
-    secure: YiogwNiQQEStkOc/bE8Bp0OD448z26WUQhWBmt7afd1Ll8uUJijFrHpioWZ6qJsJWfwj+wqOXgeXacvspOkDbAwjbv6kCJNnbg4UNRqTWH72h60Nen6Vhw/p7CY9sv2Oz/cwSt1y/1BsreoAsonHEneAfF8OauBifg+w+UXYw/2CHTkkhnmbqL6swX5g37He3I6rMrYQvVC5OQl2ACYa6GziugnMAXm1InsomffEdtuwJLmu/HJlsXSC7sdNtg7ydRBHXGH9L8HGlT2XxvLcm8ynZSIUUPQZ6rEaw1ozqE/tHuCvqgr4ZP0F+zUjBDqsF2iRaU6SDtG3dPA3phkdu4ZrjQ6tMgkVeao9xKEyNl6go8MT1tdjb0tzj49KWuHoeJuiMl4po+03A/3xvC1xEn5DXyyQTZj04rsJ2aEUod+dvm0P7oTesSfPQus76HkEKHBS1OoIMa6jmD8jInYzKyeJLX4Shr8VnRfrS/14FFQElgkPe6uRPdnoKwcl7kSl6Q02OpLpxiIjbWOELQVvCSNiWDbqdG53pCDwHhh5vvXFVDKQaGSrNQoYM0XuO/Hgl8xl/rLpBB05WcsC3GHypVWMyJLj6LDg9G4KEICRuhap4CcorjX3MJLmLK3O3wN/0P7Oyh6e4OpknpWRjjPl+TzbSk2Y2PGoJwIQdhHdGQ4=
-  file:
-    - _packages/**/*.tar.gz
+    secure: CCvSOLVAWGq7CUFI6TDqEyHNdC+ngL7H9tpnqpJKsxQVgL3SBB3/Dy6ncE8YsPyjXTaFsAI0hJavzs4XCnAPclRvy7Cp+fyoqv/oKPPAy4SftLVqQBy3FKM+BtUif2m8Y+1+eIxZtBc8q1JHJ9P5IQs3pEHfddrDW4MDqZ8kpjtscw2ZE/KEPEyLsuJ84ofEIGRTjN6SM0rwYFz8eocNFnmHlGdIKenx8XELtQ/MOfvdtW8Jwga587KJxsyg0GULgZrsKxmbmW5iBRoy+DgDrvi55OZna/xZEwEoBgp//K082Tn0M+1nH8KpnkqKIE/DXstXS5BzbwBQ+rRwfkz2sWCeAr0/9ac5WSgDqwReM5AgSIqFCNFokiokA42FsL+gFaDs8m9YsVMB1ePkTYMHyVlCV/d77tHxv+AxJKMO9QpHYIOsbZOpzhJfEXQrjip/5YHT+BYm60uKflWaLHuxdOGtWdGBWsqMkvxRvXmBEJPPR1T4ter8393oRGeVg7tpxfXQ0Dzp9uwnqH4h7VK6qcR5IIPeysUVzCvBq+uqnOqEjkDFmnMzKaDdWuETX+wohxofuwkLU55U1fhMH1CHOctxNrKkmLO4ZdejIFbKxA4L4y0Lf45+JzEnz1xrielg/kkOUWCaufxQO20+btir5E8PPAFVlNFNo5FIAKNavrU=
+  file: _packages/**/*.tar.gz
   file_glob: true
   skip_cleanup: true
   on:
     all_branches: true
+    repo: elutow/toolchain-iverilog
